@@ -778,35 +778,35 @@ function generateTS(ast, options) {
       "  end: IFilePosition;",
       "}",
       "",
-      "interface ILiteralExpectation {",
+      "export interface ILiteralExpectation {",
       "  type: \"literal\";",
       "  text: string;",
       "  ignoreCase: boolean;",
       "}",
       "",
-      "interface IClassParts extends Array<string | IClassParts> {}",
+      "export interface IClassParts extends Array<string | IClassParts> {}",
       "",
-      "interface IClassExpectation {",
+      "export interface IClassExpectation {",
       "  type: \"class\";",
       "  parts: IClassParts;",
       "  inverted: boolean;",
       "  ignoreCase: boolean;",
       "}",
       "",
-      "interface IAnyExpectation {",
+      "export interface IAnyExpectation {",
       "  type: \"any\";",
       "}",
       "",
-      "interface IEndExpectation {",
+      "export interface IEndExpectation {",
       "  type: \"end\";",
       "}",
       "",
-      "interface IOtherExpectation {",
+      "export interface IOtherExpectation {",
       "  type: \"other\";",
       "  description: string;",
       "}",
       "",
-      "type Expectation = ILiteralExpectation | IClassExpectation | IAnyExpectation | IEndExpectation | IOtherExpectation;",
+      "export type Expectation = ILiteralExpectation | IClassExpectation | IAnyExpectation | IEndExpectation | IOtherExpectation;",
       "",
       "export class SyntaxError extends Error {",
       "  public static buildMessage(expected: Expectation[], found: string | null) {",
@@ -923,7 +923,7 @@ function generateTS(ast, options) {
 
     if (options.trace) {
       parts.push([
-        "interface ITraceEvent {",
+        "export interface ITraceEvent {",
         "  type: string;",
         "  rule: string;",
         "  result?: any;",
@@ -992,7 +992,7 @@ function generateTS(ast, options) {
 
     if (options.cache) {
       parts.push([
-        "interface ICached {",
+        "export interface ICached {",
         "  nextPos: number;",
         "  result: any;",
         "}",
@@ -1319,7 +1319,7 @@ function generateTS(ast, options) {
   tracer?: any;
   [key: string]: any;
 }`;
-      const parseFunctionType = "export type ParseFunction = (input: string, options: IParseOptions) => any;";
+      const parseFunctionType = "export type ParseFunction = (input: string, options?: IParseOptions) => any;";
       const parseExport = "export const parse: ParseFunction = peg$parse;";
 
       return options.trace ?
